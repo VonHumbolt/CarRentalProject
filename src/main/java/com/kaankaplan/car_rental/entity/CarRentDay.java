@@ -14,12 +14,14 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "car_rent_days")
 public class CarRentDay {
@@ -35,7 +37,7 @@ public class CarRentDay {
 	@Column(name ="return_day")
 	private Date returnDay;
 	
-	@OneToMany(mappedBy = "carType")
+	@OneToMany(mappedBy = "carRentDay")
 	@JsonIgnore
 	private List<Car> cars;
 	

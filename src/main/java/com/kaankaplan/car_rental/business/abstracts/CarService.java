@@ -9,7 +9,7 @@ public interface CarService {
 
 	List<Car> findByCarName(String carName, int pageNo, int pageSize);
 	
-	List<Car> getSortedByPrice();
+	List<Car> getSortedByPrice(int pageNo, int pageSize);
 		
 	List<Car> getCarsByCarTypeId(int typeId, int pageNo, int pageSize);
 

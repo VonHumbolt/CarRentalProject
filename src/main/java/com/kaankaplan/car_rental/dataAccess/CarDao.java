@@ -16,7 +16,7 @@ public interface CarDao extends JpaRepository<Car, Integer>{
 	List<Car> findByCarName(String carName, Pageable pageable);
 	
 	@Query("From Car c order by c.dailyPrice asc")
-	List<Car> getSortedByPrice();
+	List<Car> getSortedByPrice(Pageable pageable);
 	
 	@Query("From Car c where c.carType.typeId = :typeId")
 	List<Car> getCarsByCarTypeId(int typeId, Pageable pageable);

@@ -3,8 +3,6 @@ package com.kaankaplan.car_rental.business.concretes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -57,13 +55,24 @@ public class AuthManager implements AuthService, UserDetailsService {
 
 	@Override
 	public void register(Company company) {
-		// TODO Auto-generated method stub	
+		User user = this.userService.getUserByEmail(company.getEmail());
+		
+		if (user != null) {
+			log.info("Email ile kayıtlı hesap var");
+		} else {
+			this.companyService.add(company);
+		}
 	}
 
 	@Override
 	public void register(Customer customer) {
-		// TODO Auto-generated method stub
+		User user = this.userService.getUserByEmail(customer.getEmail());
 		
+		if (user != null) {
+			log.info("Email ile kayıtlı hesap var");
+		} else {
+			this.customerService.add(customer);
+		}
 	}
 
 }

@@ -8,7 +8,7 @@ public interface CompanyService {
 
 	List<Company> getallCompanies(int pageNo, int pageSize);
 	
-	List<Company> findByCityName(String cityName);
+	List<Company> findByCityName(String cityName, int pageNo, int pageSize);
 	
 	Company getCompanyById(int companyId);
 	
