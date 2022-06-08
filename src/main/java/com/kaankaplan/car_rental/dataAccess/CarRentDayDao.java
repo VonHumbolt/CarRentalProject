@@ -12,6 +12,6 @@ import com.kaankaplan.car_rental.entity.CarRentDay;
 @Repository
 public interface CarRentDayDao extends JpaRepository<CarRentDay, Integer>{
 
-	@Query("From CarRentDay c where c.rentDay = :rentDay and c.returnDay = returnDay")
-	List<CarRentDay> getCarRentDaysByRentAndReturnDay(Date rentDay, Date returnDay);
+//	@Query("From CarRentDay c where c.rentDay = :rentDay and c.returnDay = returnDay")
+//	List<CarRentDay> getCarRentDaysByRentAndReturnDay(Date rentDay, Date returnDay);
 }

@@ -7,7 +7,7 @@ import com.kaankaplan.car_rental.entity.CarRentDay;
 
 public interface CarRentDayService {
 	
-	List<CarRentDay> getCarRentDaysByRentAndReturnDay(Date rentDay, Date returnDay);
+//	List<CarRentDay> getCarRentDaysByRentAndReturnDay(Date rentDay, Date returnDay);
 	
 	void add(int carId, Date rentDay, Date returnDay);
 	

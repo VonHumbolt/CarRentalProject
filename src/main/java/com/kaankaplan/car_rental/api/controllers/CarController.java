@@ -7,6 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.common.collect.Lists;
 import com.kaankaplan.car_rental.business.abstracts.CarService;
 import com.kaankaplan.car_rental.entity.Car;
 
-@RestController
+@Controller
 @RequestMapping("/api/cars/")
 @CrossOrigin
 public class CarController {
@@ -65,19 +68,22 @@ public class CarController {
 	}
 	
 	@GetMapping("getCarsByCompanyId/{companyId}")
-	public ResponseEntity<List<Car>> getCarsByCompanyId(@PathVariable int companyId, @RequestParam Optional<Integer> pageNo, @RequestParam Optional<Integer> pageSize) {
+	public String getCarsByCompanyId(@PathVariable int companyId, @RequestParam Optional<Integer> pageNo, @RequestParam Optional<Integer> pageSize, Model model) {
 		
 		List<Car> carList = this.carService.getCarsByCompanyId(companyId, pageNo.orElse(1), pageSize.orElse(10));
 		
-		return new ResponseEntity<List<Car>>(carList, HttpStatus.OK);
+		model.addAttribute("carList", carList);
+		
+		return "carList";
 	}
 	
 	@GetMapping("getall")
-	public ResponseEntity<List<Car>> getallCars(@RequestParam Optional<Integer> pageNo, @RequestParam Optional<Integer> pageSize) {
+	public String getallCars(@RequestParam Optional<Integer> pageNo, @RequestParam Optional<Integer> pageSize, Model model) {
 		
 		List<Car> carList = this.carService.getallCars(pageNo.orElse(1), pageSize.orElse(10));
+		model.addAttribute("carList", carList);
 		
-		return new ResponseEntity<List<Car>>(carList, HttpStatus.OK);
+		return "carList";
 	}
 	
 	@PostMapping("add")

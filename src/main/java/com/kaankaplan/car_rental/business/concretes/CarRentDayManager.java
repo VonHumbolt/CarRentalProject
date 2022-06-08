@@ -21,11 +21,11 @@ public class CarRentDayManager implements CarRentDayService {
 		this.carRentDayDao = carRentDayDao;
 	}
 	
-	@Override
-	public List<CarRentDay> getCarRentDaysByRentAndReturnDay(Date rentDay, Date returnDay) {
-		
-		return this.carRentDayDao.getCarRentDaysByRentAndReturnDay(rentDay, returnDay);
-	}
+//	@Override
+//	public List<CarRentDay> getCarRentDaysByRentAndReturnDay(Date rentDay, Date returnDay) {
+//		
+//		return this.carRentDayDao.getCarRentDaysByRentAndReturnDay(rentDay, returnDay);
+//	}
 
 	@Override
 	public void add(int carId, Date rentDay, Date returnDay) {
