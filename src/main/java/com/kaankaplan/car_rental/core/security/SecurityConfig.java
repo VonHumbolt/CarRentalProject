@@ -38,10 +38,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		CustomAuthenticationFilter customFilter = new CustomAuthenticationFilter(authenticationManagerBean());
+	//	customFilter.setFilterProcessesUrl("/api/login");
 		http.csrf().disable()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
-			.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()))
+			.formLogin()
+				.loginPage("/api/auth/login").usernameParameter("email").passwordParameter("password").permitAll()
+			.and()
+			.addFilter(customFilter)
 			.addFilterAfter(new JwtVerifier(), CustomAuthenticationFilter.class)
 			.authorizeRequests()
 			.anyRequest()

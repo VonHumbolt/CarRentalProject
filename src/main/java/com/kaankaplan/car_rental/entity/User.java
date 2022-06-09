@@ -10,6 +10,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,8 +30,12 @@ public class User {
 	@Column(name = "user_id")
 	private int userId;
 	
+	@NotBlank
+	@NotNull
 	private String email;
 	
+	@NotBlank
+	@NotNull
 	private String password;
 	
 	@OneToOne(mappedBy = "user")
