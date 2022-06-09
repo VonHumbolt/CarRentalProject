@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -36,35 +37,42 @@ public class CarController {
 	}
 	
 	@GetMapping("getByCarName/{carName}")
-	public ResponseEntity<List<Car>> findByCarName(@PathVariable String carName, @RequestParam Optional<Integer> pageNo, @RequestParam Optional<Integer> pageSize) {
+	public String findByCarName(@PathVariable String carName, @RequestParam Optional<Integer> pageNo, @RequestParam Optional<Integer> pageSize, Model model) {
 		
 		List<Car> carList = this.carService.findByCarName(carName, pageNo.orElse(1), pageSize.orElse(10));
+		model.addAttribute("carList", carList);
 		
-		return new ResponseEntity<List<Car>>(carList, HttpStatus.OK);
+		return "carList";
 	}
 	
 	@GetMapping("getSortedByPrice")
-	public ResponseEntity<List<Car>> getSortedByPrice(@RequestParam Optional<Integer> pageNo, @RequestParam Optional<Integer> pageSize) {
+	public String getSortedByPrice(@RequestParam Optional<Integer> pageNo, @RequestParam Optional<Integer> pageSize, Model model) {
 		
 		List<Car> carList = this.carService.getSortedByPrice(pageNo.orElse(1), pageSize.orElse(10));
 		
-		return new ResponseEntity<List<Car>>(carList, HttpStatus.OK);
+		model.addAttribute("carList", carList);
+		
+		return "carList";
 	}
 	
 	@GetMapping("getCarsByCarTypeId/{typeId}")
-	public ResponseEntity<List<Car>> getCarsByCarTypeId(@PathVariable int typeId, @RequestParam Optional<Integer> pageNo, @RequestParam Optional<Integer> pageSize) {
+	public String getCarsByCarTypeId(@PathVariable int typeId, @RequestParam Optional<Integer> pageNo, @RequestParam Optional<Integer> pageSize, Model model) {
 		
 		List<Car> carList = this.carService.getCarsByCarTypeId(typeId, pageNo.orElse(1), pageSize.orElse(10));
 		
-		return new ResponseEntity<List<Car>>(carList, HttpStatus.OK);
+		model.addAttribute("carList", carList);
+		
+		return "carList";
 	}
 	
 	@GetMapping("getCarsByEmptyDay/{rentDay}/{returnDay}")
-	public ResponseEntity<List<Car>> getCarsByEmptyDay(@PathVariable Date rentDay, @PathVariable Date returnDay, @RequestParam Optional<Integer> pageNo, @RequestParam Optional<Integer> pageSize) {
+	public String getCarsByEmptyDay(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date rentDay, @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date returnDay, @RequestParam Optional<Integer> pageNo, @RequestParam Optional<Integer> pageSize,
+			Model model) {
 		
 		List<Car> carList = this.carService.getCarsByEmptyDay(rentDay, returnDay, pageNo.orElse(1), pageSize.orElse(10));
+		model.addAttribute("carList", carList);
 		
-		return new ResponseEntity<List<Car>>(carList, HttpStatus.OK);
+		return "carList";
 	}
 	
 	@GetMapping("getCarsByCompanyId/{companyId}")
@@ -84,6 +92,16 @@ public class CarController {
 		model.addAttribute("carList", carList);
 		
 		return "carList";
+	}
+	
+	@GetMapping("/{carId}")
+	public String getCarById(@PathVariable int carId, Model model) {
+		
+		Car car = this.carService.getCarById(carId);
+		
+		model.addAttribute("car", car);
+		
+		return "carDetail";
 	}
 	
 	@PostMapping("add")

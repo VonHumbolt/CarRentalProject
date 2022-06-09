@@ -75,5 +75,11 @@ public class CarManager implements CarService {
 		
 	}
 
+	@Override
+	public Car getCarById(int carId) {
+		
+		return this.carDao.getById(carId);
+	}
+
 	
 }

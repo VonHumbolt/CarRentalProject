@@ -41,6 +41,21 @@ public class Car {
 	@Column(name = "price_expiration_day")
 	private Date priceExpirationDay;
 	
+	@Column(name = "model_year")
+	private int modelYear;
+	
+	@Column(name = "fuel")
+	private String fuel;
+	
+	@Column(name = "gear")
+	private String gear;
+	
+	@Column(name = "motor_power")
+	private int motorPower;
+	
+	@Column(name = "color")
+	private String color;
+	
 	@ManyToOne
 	@JoinColumn(name = "car_type")
 	private CarType carType;

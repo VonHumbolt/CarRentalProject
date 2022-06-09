@@ -19,6 +19,8 @@ public interface CarService {
 	
 	List<Car> getallCars(int pageNo, int pageSize);
 	
+	Car getCarById(int carId);
+	
 	void add(Car car);
 	
 	void deleteById(int carId);

@@ -40,7 +40,7 @@
         <section class="masthead page-section portfolio" id="portfolio">
             <div class="container">
           
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Cars</h2>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0"  th:text="${car.carName}"> </h2>
          
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -48,31 +48,106 @@
                     <div class="divider-custom-line"></div>
                 </div>
       			
-                <div class="row justify-content-center">
-                            	
-                    
-                    <div class="col-md-6 col-lg-4 mb-5" th:each="car: ${carList}" >
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            	
-                            	<div class="row justify-content-between text-dark text-center" >
-                            		<p class="h4" th:text="${car.carName}">  </p>
-                           			<p class="h6" th:text="${car.carType.typeName}">  </p>
-                            		<p class="h6" th:text="${car.company.companyName}">  </p>
-                            		
-                           			<p class="h6" th:text="${'Daily Price: ' + car.dailyPrice + ' ₺'}"> </p>
-                           			
-                           			<a th:href="'/api/cars/' + ${car.carId}" class="stretched-link"></a>
-                            	</div>
-                            	
-                            	
-                            </div>
-                            <img class="img-fluid" th:src="@{/assets/img/portfolio/audia6.jpg}" alt="..." />		  
+				<div class = "row justify-content-center text-dark" >
+					
+					<div class = "col-sm-12 col-lg-6">
+						<img class="img w-100" th:src="@{/assets/img/portfolio/audia6.jpg}" />
+						<p class="h6 text-dark p-2">Information:</p>
+						<p class="small ps-2" th:text="'Daily rental prices for this car are valid between ' +
+						 ${#dates.format(car.priceStartDay, 'dd-MMM-yyyy')} + ' and ' + ${#dates.format(car.priceExpirationDay, 'dd-MMM-yyyy')} + '.'"></p>
+						
+					</div>
+				           			
+					<div class = "col-sm-12 col-lg-6">
+						<table class="table">
+						  <thead>
+						    <tr>
+						      <th scope="col" colspan="3" class="h4 text-center">Features</th>
+						      
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+						      <th scope="row">1</th>
+						      <td>Brand</td>
+						      <td th:text="${car.carName}"></td>
+						      
+						    </tr>
+						    <tr>
+						      <th scope="row">2</th>
+						      <td class="text-dark" >Car Type</td>
+						      <td th:text="${car.carType.typeName}"></td>
+						      
+						    </tr>
+						    <tr>
+						      <th scope="row">3</th>
+						      <td>Company</td>
+						      <td th:text="${car.company.companyName}"></td>
+						    </tr>
+						    
+						    <tr>
+						      <th scope="row">4</th>
+						      <td>Model Year</td>
+						      <td th:text="${car.modelYear}"></td>
+						    </tr>
+						    
+						    <tr>
+						      <th scope="row">5</th>
+						      <td>Fuel</td>
+						      <td th:text="${car.fuel}"></td>
+						    </tr>
+						    
+						    <tr>
+						      <th scope="row">6</th>
+						      <td>Gear</td>
+						      <td th:text="${car.gear}"></td>
+						    </tr>
+						    
+						    <tr>
+						      <th scope="row">7</th>
+						      <td>Motor Power</td>
+						      <td th:text="${car.motorPower}"></td>
+						    </tr>
+						    
+						    <tr>
+						      <th scope="row">8</th>
+						      <td>Color</td>
+						      <td th:text="${car.color}"></td>
+						    </tr>
+						    
+						     <tr>
+						      <th scope="row">9</th>
+						      <td>Daily Price</td>
+						      <td th:text="${car.dailyPrice + ' ₺'}"></td>
+						    </tr>
+						  </tbody>
+						</table>
+	                   
+	                  	<div class="divider-custom">
+                		    <div class="divider-custom-line"></div>
+                 		</div>
+      					
+						<div class = "row" >
+							<p class="h5 text-center mb-3"> Rent This Car</p>
+							<div class="col" >
+								<p class="small"> Rent Day: 
+									<input type='date' class="form-control" />
+								</p>
+													
+							</div>
 							
-                        </div>
-                    </div>
-       
-                </div>
+							<div class="col" >
+								<p class="small"> Return Day:
+									<input type='date' class="form-control" />
+								</p>
+								
+							</div>
+							
+						</div>
+						
+					</div>
+				
+				</div>
             </div>
         </section>
         
@@ -88,5 +163,3 @@
         
     </body>
 </html>
-
-
