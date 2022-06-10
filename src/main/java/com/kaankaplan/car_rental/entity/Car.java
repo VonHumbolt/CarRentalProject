@@ -59,13 +59,15 @@ public class Car {
 	@Column(name = "image_url")
 	private String imageUrl;
 	
+	@Column(name = "start_rent_day")
+	private Date startRentDay;
+	
+	@Column(name = "finish_rent_day")
+	private Date finishRentDay;
+	
 	@ManyToOne
 	@JoinColumn(name = "car_type")
 	private CarType carType;
-	
-	@ManyToOne
-	@JoinColumn(name = "rented_day")
-	private CarRentDay carRentDay;
 	
 	@ManyToOne
 	@JoinColumn(name = "company_id")

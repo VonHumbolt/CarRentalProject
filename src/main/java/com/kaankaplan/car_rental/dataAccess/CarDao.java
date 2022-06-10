@@ -21,9 +21,16 @@ public interface CarDao extends JpaRepository<Car, Integer>{
 	@Query("From Car c where c.carType.typeId = :typeId")
 	List<Car> getCarsByCarTypeId(int typeId, Pageable pageable);
 
-	@Query("From Car c where c.carRentDay.rentDay < :rentDay and c.carRentDay.returnDay > :returnDay")
+	@Query("From Car c where (c.startRentDay < :rentDay and c.finishRentDay > :returnDay) or (c.startRentDay > :rentDay and c.startRentDay > :returnDay)"
+			+ "or (c.finishRentDay < :rentDay and c.finishRentDay < :returnDay)"
+			)
 	List<Car> getCarsByEmptyDay(Date rentDay, Date returnDay, Pageable pageable);
 	
 	@Query("From Car c where c.company.userId = :companyId")
 	List<Car> getCarsByCompanyId(int companyId, Pageable pageable);
+
+	@Query("From Car c where c.carId=:carId and ( (c.startRentDay < :rentDay and c.finishRentDay > :returnDay) or (c.startRentDay > :rentDay and c.startRentDay > :returnDay)"
+			+ "or (c.finishRentDay < :rentDay and c.finishRentDay < :returnDay) )"
+			)
+	Car carIsEmptyBetweenGivenDays(int carId, Date rentDay, Date returnDay);
 }

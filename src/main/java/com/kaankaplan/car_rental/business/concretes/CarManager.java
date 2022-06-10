@@ -62,6 +62,12 @@ public class CarManager implements CarService {
 	}
 
 	@Override
+	public Car carIsEmptyBetweenGivenDays(int carId, Date rentDay, Date returnDay) {
+		
+		return this.carDao.carIsEmptyBetweenGivenDays(carId, rentDay, returnDay);
+	}
+
+	@Override
 	public void add(Car car) {
 		
 		this.carDao.save(car);
@@ -80,6 +86,7 @@ public class CarManager implements CarService {
 		
 		return this.carDao.getById(carId);
 	}
+
 
 	
 }

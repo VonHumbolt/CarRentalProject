@@ -21,6 +21,8 @@ public interface CarService {
 	
 	Car getCarById(int carId);
 	
+	Car carIsEmptyBetweenGivenDays(int carId, Date rentDay, Date returnDay);
+	
 	void add(Car car);
 	
 	void deleteById(int carId);

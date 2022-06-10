@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.google.common.collect.Lists;
 import com.kaankaplan.car_rental.business.abstracts.CarService;
 import com.kaankaplan.car_rental.entity.Car;
 
@@ -65,8 +63,21 @@ public class CarController {
 		return "carList";
 	}
 	
-	@GetMapping("getCarsByEmptyDay/{rentDay}/{returnDay}")
-	public String getCarsByEmptyDay(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date rentDay, @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date returnDay, @RequestParam Optional<Integer> pageNo, @RequestParam Optional<Integer> pageSize,
+	@GetMapping("carIsEmpty/{carId}")
+	public String carIsEmpty(@PathVariable int carId, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date rentDay, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date returnDay, 
+			Model model) {
+		
+		Car car = this.carService.carIsEmptyBetweenGivenDays(carId, rentDay, returnDay);
+		if (car != null) {
+			model.addAttribute(car);
+			return "rent";
+		}
+				
+		return "redirect:/api/cars/"+carId;
+	}
+	
+	@GetMapping("getCarsByEmptyDay")
+	public String getCarsByEmptyDay(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date rentDay, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date returnDay, @RequestParam Optional<Integer> pageNo, @RequestParam Optional<Integer> pageSize,
 			Model model) {
 		
 		List<Car> carList = this.carService.getCarsByEmptyDay(rentDay, returnDay, pageNo.orElse(1), pageSize.orElse(10));
