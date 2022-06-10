@@ -40,19 +40,23 @@ public class AuthController {
 	
 	
 	@PostMapping("register/company")
-	public ResponseEntity<String> register(@RequestBody Company company) {
+	public String register(@Valid Company company,  BindingResult result, Model model) {
+		
+		if(result.hasErrors()) {
+			return "register";
+		}
 		
 		this.authService.register(company);
 		
-		return new ResponseEntity<String>("Hesabınız oluşturuldu", HttpStatus.CREATED);
+		return "redirect:/api/auth/login";
 		
 	}
 	
 	
 	// Customer Sign Up process
 	
-	@GetMapping("/signUpCustomer")
-    public String showSignUpForm(Customer customer) {
+	@GetMapping("/signUp")
+    public String showSignUpForm(Customer customer, Company company) {
         return "register";
     }
 	
@@ -65,7 +69,7 @@ public class AuthController {
 		
 		this.authService.register(customer);
 		
-		return "redirect:/";
+		return "redirect:/api/auth/login";
 		
 	}
 }

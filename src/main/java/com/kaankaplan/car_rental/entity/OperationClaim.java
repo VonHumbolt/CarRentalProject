@@ -1,10 +1,13 @@
 package com.kaankaplan.car_rental.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -29,7 +32,7 @@ public class OperationClaim {
 	@Column(name = "claim_name")
 	private String claimName;
 	
-	@OneToOne
+	@OneToMany(mappedBy = "claim")
 	@JsonIgnore
-	private User user;
+	private List<User> users;
 }

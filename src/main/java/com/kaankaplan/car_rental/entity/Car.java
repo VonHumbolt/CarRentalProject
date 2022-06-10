@@ -56,6 +56,9 @@ public class Car {
 	@Column(name = "color")
 	private String color;
 	
+	@Column(name = "image_url")
+	private String imageUrl;
+	
 	@ManyToOne
 	@JoinColumn(name = "car_type")
 	private CarType carType;
