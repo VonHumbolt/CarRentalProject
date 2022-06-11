@@ -1,8 +1,15 @@
 package com.kaankaplan.car_rental.api.controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,6 +28,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kaankaplan.car_rental.business.abstracts.CarService;
 import com.kaankaplan.car_rental.entity.Car;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/api/cars/")
 @CrossOrigin
@@ -63,17 +73,31 @@ public class CarController {
 		return "carList";
 	}
 	
+	@SuppressWarnings("deprecation")
 	@GetMapping("carIsEmpty/{carId}")
 	public String carIsEmpty(@PathVariable int carId, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date rentDay, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date returnDay, 
-			Model model) {
-		
+			Model model) throws ParseException {
+			
 		Car car = this.carService.carIsEmptyBetweenGivenDays(carId, rentDay, returnDay);
+		
+		SimpleDateFormat dtf = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
+		
+		
 		if (car != null) {
-			model.addAttribute(car);
-			return "rent";
+			model.addAttribute("car", car);
+			
+			Date date1 = dtf.parse(rentDay.toLocaleString());
+		    Date date2 = (Date) dtf.parse(returnDay.toLocaleString());
+		    long diff = date2.getTime() - date1.getTime();
+		    
+		    long daysBetween = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+		    
+			model.addAttribute("payAmount", daysBetween * car.getDailyPrice());
+		} else {
+			model.addAttribute("carId", carId);
 		}
-				
-		return "redirect:/api/cars/"+carId;
+	
+		return "rent";
 	}
 	
 	@GetMapping("getCarsByEmptyDay")
@@ -82,7 +106,7 @@ public class CarController {
 		
 		List<Car> carList = this.carService.getCarsByEmptyDay(rentDay, returnDay, pageNo.orElse(1), pageSize.orElse(10));
 		model.addAttribute("carList", carList);
-		
+			
 		return "carList";
 	}
 	
@@ -113,6 +137,11 @@ public class CarController {
 		model.addAttribute("car", car);
 		
 		return "carDetail";
+	}
+	
+	@GetMapping("/paymentSuccess")
+	public String paymentSuccess() {
+		return "paymentSuccess";
 	}
 	
 	@PostMapping("add")

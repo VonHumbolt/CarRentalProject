@@ -14,7 +14,7 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link th:href="@{/css/styles.css}" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -39,9 +39,44 @@
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="assets/img/car.svg" alt	="..." />
+                <img class="masthead-avatar mb-2" src="assets/img/car.svg" alt	="..." />
                 <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0">RENT YOUR DREAM CAR</h1>
+                <h1 class="masthead-heading text-uppercase mb-5">RENT YOUR DREAM CAR</h1>
+                
+        
+                
+                <form action="#" th:action="'/api/cars/getCarsByEmptyDay/'" method="get">
+      				
+      					<div class="justify-content-center">
+      					
+							<div class="row g-3 align-items-center">
+								<p class="h5 text-center"> Filter Car By Travel Time</p>
+								<div class="col-5" >
+								
+									<p class="h6"> Rent Day: 
+										<input type='date' class="form-control" th:name="rentDay" id="rentDayFilter" />
+									</p>
+								
+								</div>
+								<div class="col-5" >
+								
+									<p class="h6"> Return Day:
+										<input type='date' class="form-control"  th:name="returnDay" id="returnDayFilter"/>
+									</p>			
+								
+								</div>
+								<div class="col-2" >
+								
+									<button class="btn btn-dark float-right mt-2" type="submit">Search</button>
+								
+								</div>
+							
+										
+      					
+      					</div>   					 
+						
+						</div>
+  				</form>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
@@ -135,8 +170,8 @@
                 </div>
                 <!-- About Section Content-->
                 <div class="row">
-                    <div class="col-lg-4 ms-auto"><p class="lead">Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional SASS stylesheets for easy customization.</p></div>
-                    <div class="col-lg-4 me-auto"><p class="lead">You can create your own custom avatar for the masthead, change the icon in the dividers, and add your email address to the contact form to make it fully functional!</p></div>
+                    <div class="col-lg-4 ms-auto"><p class="lead">Car Rental is a website that unites all car rental companies. The purpose of the car rental project is to enable people who want to rent a car to easily reach the cars and rent them quickly. </p></div>
+                    <div class="col-lg-4 me-auto"><p class="lead">It was established in 2022 and has been working to provide better service to its users since its establishment.</p></div>
                 </div>
             </div>
         </section>
@@ -262,7 +297,7 @@
                                     <!-- Portfolio Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/audia6.jpg" alt="..." />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <p class="mb-4">The Audi A6 has 1 Petrol Engine on offer. The Petrol engine is 1984 cc . It is available with Automatic transmission.Depending upon the variant and fuel type the A6 has a mileage of 14.11 kmpl & Ground clearance of A6 is 165mm. The A6 is a 5 seater 4 cylinder car and has length of 4939mm, width of 2110mm and a wheelbase of 2924mm.</p>
                                     
                                     <a th:href="@{/api/cars/1}">                                    
 	                                    <button class="btn btn-primary" data-bs-dismiss="modal">
@@ -299,9 +334,9 @@
                                     <!-- Portfolio Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/clio.jpg" alt="..." />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <p class="mb-4">It’s the fifth-generation Renault Clio, launched in 2019 almost 30 years after the original hit our roads way back in 1990. Fast forward to the present day and it’s based on the CMF-B (Common Module Family-B) platform shared with Nissan, the use of which is said to deliver improvements in space, safety, weight saving and tech. Which it does, but more of that in a minute.</p>
                                     
-                                    <a th:href="@{/api/cars/2}">                                    
+                                    <a th:href="@{/api/cars/6}">                                    
 	                                    <button class="btn btn-primary" data-bs-dismiss="modal">
 	                                        
 	                                        Show Detail
@@ -338,7 +373,7 @@
                                     <!-- Portfolio Modal - Text-->
                                     <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
                                     
-                                    <a th:href="@{/api/cars/3}">                                    
+                                    <a th:href="@{/api/cars/7}">                                    
 	                                    <button class="btn btn-primary" data-bs-dismiss="modal">
 	                                        
 	                                        Show Detail
@@ -375,7 +410,7 @@
                                     <!-- Portfolio Modal - Text-->
                                     <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
                                     
-									<a th:href="@{/api/cars/4}">                                    
+									<a th:href="@{/api/cars/3}">                                    
 	                                    <button class="btn btn-primary" data-bs-dismiss="modal">
 	                                        
 	                                        Show Detail
@@ -412,7 +447,7 @@
                                     <!-- Portfolio Modal - Text-->
                                     <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
                                     
-                                    <a th:href="@{/api/cars/5}">                                    
+                                    <a th:href="@{/api/cars/2}">                                    
 	                                    <button class="btn btn-primary" data-bs-dismiss="modal">
 	                                        
 	                                        Show Detail
@@ -451,7 +486,7 @@
                                     <!-- Portfolio Modal - Text-->
                                     <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
                                     
-                                    <a th:href="@{/api/cars/6}">                                    
+                                    <a th:href="@{/api/cars/5}">                                    
 	                                    <button class="btn btn-primary" data-bs-dismiss="modal">
 	                                        
 	                                        Show Detail
@@ -469,7 +504,18 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script th:inline="javascript">
+		
+			
+       			let day = new Date();
+		
+       		// Index page car filter inputs
+       			document.getElementById("rentDayFilter").defaultValue = day.getFullYear() + '-' + ('0' + (day.getMonth() + 1)).slice(-2) + '-' + ('0' + day.getDate()).slice(-2);
+       			document.getElementById("returnDayFilter").defaultValue = day.getFullYear() + '-' + ('0' + (day.getMonth() + 2)).slice(-2) + '-' + ('0' + day.getDate()).slice(-2);
+
+       			
+			</script>
+        <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
