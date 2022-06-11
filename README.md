@@ -20,46 +20,50 @@ For the frontend of project, Thymeleaf is used.
 </p>
 
 ## Project's UI
-Project's UI design was created using Bootstrap and Thymeleaf. It has a responsive design for tablets, phones.
-<p text-align="center"> 
-	<img src="images/index_lg.jpeg" />
-	<img src="images/index_sm.jpeg" />
-	 - 
-	<img src="images/index_lg_2.jpeg" />
-	<img src="images/index_sm_2.jpeg" />
-</p>
 
 ### Home Page
-Users can filter cars by rent and return date.
+#### Users can filter cars by rent and return date.
 <p text-align="center"> 
-	<img src="images/index_lg.jpeg" />
-	<img src="images/index_lg_2.jpeg" />
-	<img src="images/car_modal.jpeg" />
+	<img src="images/index_lg.jpg" />
+	<img src="images/index_lg_2.jpg" />
+	<img src="images/car_modal_lg.jpg" />
 </p>
 
 ### Car List Page
-All Cars lists in this page with pagination.
+#### All Cars lists in this page with pagination.
 <p text-align="center"> 
-	<img src="images/car_list_lg.jpeg" />
+	<img src="images/car_list_lg.jpg" />
 </p>
 
 ### Car Detail Page
-Users can go to car detail page by clicking car image.
+#### Users can go to car detail page by clicking car image.
 <p text-align="center"> 
-	<img src="images/car_detail_lg.jpeg" />
-	<img src="images/car_detail_sm.jpeg" />
+	<img src="images/car_detail_lg.jpg" />
+	<img width="375" height="667" src="images/car_detail_sm.jpg" />
 </p>
 
 ### Registration Page
-The registration form to create an account is on this page.
+#### The registration form to create an account is on this page.
 <p text-align="center"> 
-	<img src="images/registration.jpeg" />
+	<img width="375" height="667" src="images/registiration_sm.jpg" />
 </p>
 
 ### Payment Messages
 <p text-align="center"> 
-	<img src="images/payment_success.jpeg" />
-	<img src="images/payment_error.jpeg" />
+	<img width="375" height="667" src="images/payment_success.jpg" />
+	<img width="375" height="667" src="images/payment_error.jpg" />
+</p>
+
+### Responsive Design
+#### Project's UI design was created using Bootstrap and Thymeleaf. It has a responsive design for tablets, phones.
+<p text-align="center"> 
+	<img width="600" height="350" src="images/index_lg.jpg" />
+	<img width="200" height="350" src="images/index_sm.jpg" />
+</p>
+
+<p text-align="center">
+	<img width="600" height="350" src="images/index_lg_2.jpg" />
+	<img width="200" height="350" src="images/index_sm_2.jpg" />
 </p>
 
 ## Layers of Project
