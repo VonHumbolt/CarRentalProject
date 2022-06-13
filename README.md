@@ -1,5 +1,6 @@
 # Car Rental Project
-Written by Java - Spring Boot. 
+Written by Java - Spring Boot. <br>
+<b> To try the project: Live Code is Here -> https://car-rental-demo-project.herokuapp.com/ . Go ahead and test it! </b>
 
 ## Brief
 Car Rental Project is a web site for renting a car. This web site consists of a home page, listed cars page, cars details page, login, register
