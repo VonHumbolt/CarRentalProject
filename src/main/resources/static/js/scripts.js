@@ -10,7 +10,7 @@ let today = new Date();
 
 // Car detail page date inputs
 document.getElementById("rentDay").defaultValue = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
-document.getElementById("returnDay").defaultValue = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate() + 2).slice(-2);
+document.getElementById("returnDay").defaultValue = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + (today.getDate()+1) ).slice(-2);
 
 
 window.addEventListener('DOMContentLoaded', event => {

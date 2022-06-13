@@ -80,13 +80,13 @@ public class CarController {
 			
 		Car car = this.carService.carIsEmptyBetweenGivenDays(carId, rentDay, returnDay);
 		
-		SimpleDateFormat dtf = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
+		SimpleDateFormat dtf = new SimpleDateFormat("MMM d, u h:m:s a");
 		
 		
 		if (car != null) {
 			model.addAttribute("car", car);
 			
-			Date date1 = dtf.parse(rentDay.toLocaleString());
+			Date date1 = (Date) dtf.parse(rentDay.toLocaleString());
 		    Date date2 = (Date) dtf.parse(returnDay.toLocaleString());
 		    long diff = date2.getTime() - date1.getTime();
 		    
